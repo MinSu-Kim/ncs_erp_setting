@@ -25,6 +25,8 @@ public class Setting {
 	private String[] tbl_name;
 	private String importDir;
 	private String exportDir;
+	private String grantSql;
+	private String user;
 	
 	private Dao dao;
 	
@@ -39,6 +41,9 @@ public class Setting {
 		
 		importDir=propSql.getProperty("import_dir");
 		exportDir=System.getProperty("user.dir")+propSql.getProperty("export_dir");
+		
+		grantSql = propSql.getProperty("grant");
+		user = propSql.getProperty("user");
 	}
 
 	public static Setting getInstance() {
@@ -50,8 +55,17 @@ public class Setting {
 		setForeignKeyCheck(0);
 		createTable();
 		setForeignKeyCheck(1);	
+		createUser();
 	}
 	
+	private void createUser() {
+		try {
+			dao.execQueryCnt(String.format(grantSql, propSql.getProperty("db_name"), user, user));		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	private void initDatabase(){
 		try {
 			for(int i=0; i<createDbSql.length; i++){
