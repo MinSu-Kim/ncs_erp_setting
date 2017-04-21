@@ -2,7 +2,10 @@ apply plugin: 'java'//src/main과src/test로분할
 apply plugin: 'eclipse'
 apply plugin: 'application'//실행가능한jar파일생성
 
-compileJava.options.encoding= 'UTF-8' //인코딩지정
+//인코딩지정
+tasks.withType(JavaCompile) {
+	options.encoding= 'UTF-8'
+}
 
 repositories{
 	jcenter()
