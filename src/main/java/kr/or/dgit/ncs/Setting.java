@@ -137,7 +137,7 @@ public class Setting {
 				sb.replace(sb.length() - 1, sb.length(), ""); // 마지막 라인의 comma 제거
 				sb.append("\r\n");
 			}
-			sb.replace(sb.length() - 2, sb.length(), ""); //마지막 줄의 개행 제거
+//			sb.replace(sb.length() - 2, sb.length(), ""); //마지막 줄의 개행 제거
 			
 			backupFileWrite(sb.toString(), exportPath);
 			System.out.printf("Export Table(%s) %d Rows Success! %n",tblName, rowCnt);

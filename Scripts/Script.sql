@@ -424,6 +424,12 @@ delete from ncs_erp.employee;
 LOAD DATA LOCAL INFILE 'D:/workspace_ncs/ncs_erp_setting/DataFiles/employee.txt' INTO TABLE ncs_erp.employee character set 'UTF8' fields TERMINATED by ',';
 
 
-SELECT eno, ename, salary, dno, gender, date_format(joindate, '%Y-%m-%d'), title
+select max(eno) 
 FROM ncs_erp.employee;
+
+select eno, ename, salary, dno, gender, date_format(joindate, '%Y-%m-%d') as joindate, title from ncs_erp.employee;
+
+select eno, ename, salary, dno, gender, date_format(joindate, '%Y-%m-%d') as joindate, title from ncs_erp.employee;
+
+
 
