@@ -432,4 +432,29 @@ select eno, ename, salary, dno, gender, date_format(joindate, '%Y-%m-%d') as joi
 select eno, ename, salary, dno, gender, date_format(joindate, '%Y-%m-%d') as joindate, title from ncs_erp.employee;
 
 
+-- 데이터베이스 존재 확인
+SELECT EXISTS (
+	SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'ncs_erp'
+)AS flag;
 
+-- 데이터베이스내 테이블 확인
+SELECT EXISTS (
+	SELECT 1
+	FROM Information_schema.tables 
+	WHERE table_name = 'department' 
+	AND table_schema = 'ncs_erp'
+)AS flag;
+
+SELECT EXISTS (
+	SELECT 1
+	FROM Information_schema.tables 
+	WHERE table_name = 'employee' 
+	AND table_schema = 'ncs_erp'
+)AS flag;
+
+SELECT EXISTS (
+	SELECT 1
+	FROM Information_schema.tables 
+	WHERE table_name = 'title' 
+	AND table_schema = 'ncs_erp'
+)AS flag;
