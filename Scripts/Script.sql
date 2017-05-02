@@ -458,3 +458,16 @@ SELECT EXISTS (
 	WHERE table_name = 'title' 
 	AND table_schema = 'ncs_erp'
 )AS flag;
+
+
+select * from information_schema.TABLES where TABLE_NAME = 'employee'
+
+select 1 from information_schema.SCHEMATA where SCHEMA_NAME = 'ncs_erp';
+select 1 from information_schema.TABLES where TABLE_NAME = 'employee' and TABLE_SCHEMA = 'ncs_erp';
+
+select 1 from `user` where user = 'user_ncs';
+
+
+
+
+

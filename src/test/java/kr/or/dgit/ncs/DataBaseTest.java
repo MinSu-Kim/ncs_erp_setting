@@ -39,58 +39,38 @@ public class DataBaseTest {
 
 	@Test
 	public void bTestDBExists() throws SQLException{
-		int exist = 0;
-		PreparedStatement pstmt = connection.prepareStatement(String.format(DB_CHECK_SQL, DB_NAME));
-		ResultSet rs = pstmt.executeQuery();
-		if (rs.next()){
-			exist = rs.getInt(1);
-		}
-		rs.close();
-		pstmt.close();
+		int exist = getQueryResult(String.format(DB_CHECK_SQL, DB_NAME));
 		
 		Assert.assertEquals(1, exist);
 	}
 	
 	@Test
 	public void cTestEmployeeTableExists() throws SQLException{
-		int exist = 0;
-		PreparedStatement pstmt = connection.prepareStatement(String.format(TABLE_CHECK_SQL, TBL_NAMES[0], DB_NAME));
-		ResultSet rs = pstmt.executeQuery();
-		if (rs.next()){
-			exist = rs.getInt(1);
-		}
-		rs.close();
-		pstmt.close();
-		
+		int exist = getQueryResult(String.format(TABLE_CHECK_SQL, TBL_NAMES[0], DB_NAME));
 		Assert.assertEquals(1, exist);
 	}
 	
 	@Test
 	public void dTestDepartmentTableExists() throws SQLException{
-		int exist = 0;
-		PreparedStatement pstmt = connection.prepareStatement(String.format(TABLE_CHECK_SQL, TBL_NAMES[1], DB_NAME));
-		ResultSet rs = pstmt.executeQuery();
-		if (rs.next()){
-			exist = rs.getInt(1);
-		}
-		rs.close();
-		pstmt.close();
-		
+		int exist = getQueryResult(String.format(TABLE_CHECK_SQL, TBL_NAMES[1], DB_NAME));
 		Assert.assertEquals(1, exist);
 	}
 	
 	@Test
 	public void eTestTitleTableExists() throws SQLException{
-		int exist = 0;
-		PreparedStatement pstmt = connection.prepareStatement(String.format(TABLE_CHECK_SQL, TBL_NAMES[2], DB_NAME));
-		ResultSet rs = pstmt.executeQuery();
-		if (rs.next()){
-			exist = rs.getInt(1);
-		}
-		rs.close();
-		pstmt.close();
-		
+		int exist = getQueryResult(String.format(TABLE_CHECK_SQL, TBL_NAMES[2], DB_NAME));
 		Assert.assertEquals(1, exist);
 	}
 
+	private int getQueryResult(String sql) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = connection.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		if (rs.next()){
+			result = rs.getInt(1);
+		}
+		rs.close();
+		pstmt.close();
+		return result;
+	}
 }
